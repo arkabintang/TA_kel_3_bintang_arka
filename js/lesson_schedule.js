@@ -11,13 +11,13 @@ Promise.all([
 ]).then(([schedules, teachers, lessons, classes]) => {
 
   const teacherById = Object.fromEntries(teachers.map(t => [t.id, t]));
-  const lessonById  = Object.fromEntries(lessons.map(l => [l.id, l]));
+  const lessonById  = Object.fromEntries(lessons.map(l => [l.subject_id, l]));
   const classById   = Object.fromEntries(classes.map(c => [c.id, c]));
 
   allData = schedules.map(s => ({
     day: s.day,
     time: `${formatTime(s.time_start)} – ${formatTime(s.time_end)}`,
-    lesson: lessonById[s.lessons_id]?.subject || '-',
+    lesson: lessonById[s.teacher_id]?.subject || '-',
     teacher: teacherById[s.teacher_id]?.name || '-',
     class: classById[s.class_id]?.name || '-'
   }));
