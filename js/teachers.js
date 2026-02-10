@@ -22,7 +22,7 @@ Promise.all([
         filteredData.push({
           nip: t.nip,
           teacher: t.name,
-          lesson: lessonById[s.lessons_id]?.subject || '-',
+          lesson: lessonById[s.subject_id]?.subject || '-',
           class: classById[s.class_id]?.name || '-'
         });
       });
@@ -77,4 +77,5 @@ document.getElementById('nextBtn').onclick = () => {
     renderTable();
   }
 };
+
 
